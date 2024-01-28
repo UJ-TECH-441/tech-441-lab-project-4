@@ -5,7 +5,7 @@ module.exports = app => {
 
 	app.get('/predictions', async (req, res, next) => {
 		try {
-			const messages = handler.makePredictions();
+			const messages = await handler.makePredictions();
 			res.json({ messages });
 		} catch (err) {
 			// Error handling

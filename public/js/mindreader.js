@@ -13,9 +13,10 @@ const read = () => {
 		.then(result => {
 			// Result will be a JSON object
 			const items = result.messages.map(message =>
-				`<li>${message.prediction} <span class="bold">${message.value}<span</li>`
+				`<li>${message.prefix} <span class="bold">${message.value}<span</li>`
 			);
 			$('#results').html(`<ul>${items.join('\n')}</ul>`);
+			$('#try-again').show();
 		})
 		.catch(err => {
 			console.error(err);
