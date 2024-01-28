@@ -5,7 +5,7 @@ const database = require('../data/database');
 // The read() function will be called by the index.js route
 module.exports.makePredictions = async () => {
 	// Create some horribly wrong predictions
-	const predictions = [
+	const items = [
 		{
 			prefix: 'Your name is',
 			value: faker.person.fullName(),
@@ -20,11 +20,11 @@ module.exports.makePredictions = async () => {
 		}
 	];
 
-	// Save them in the database
-	console.log(database.models.Prediction);
-	await database.create(database.models.Prediction, {
-		predictions,
-		predictionDate: Date.now(),
+	// Save predictions in database
+	const predictions = await database.create(database.models.Prediction, {
+		items,
+		dateGenerated: Date.now(),
+		scored: false,
 		correct: false
 	});
 

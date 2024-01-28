@@ -5,6 +5,7 @@ $(document).ready(function() {
 });
 
 const read = () => {
+	scoreReset();
 	fetch(`/predictions`)
 		.then(res => {
 			if (!res.ok) throw new Error(res.statusText);
@@ -12,11 +13,12 @@ const read = () => {
 		})
 		.then(result => {
 			// Result will be a JSON object
-			const items = result.messages.map(message =>
-				`<li>${message.prefix} <span class="bold">${message.value}<span</li>`
+			const items = result.predictions.items.map(item =>
+				`<li>${item.prefix} <span class="bold">${item.value}<span</li>`
 			);
 			$('#results').html(`<ul>${items.join('\n')}</ul>`);
 			$('#try-again').show();
+			scoreShow(result.predictions._id);
 		})
 		.catch(err => {
 			console.error(err);

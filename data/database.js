@@ -37,7 +37,6 @@ module.exports.aggregate = async (model, filter) => {
 };
 
 module.exports.create = async (model, obj) => {
-	console.log(model, obj);
 	const conn = await connect();
 	return await model.create(obj);
 };
@@ -50,4 +49,9 @@ module.exports.update = async (model, filter, obj) => {
 module.exports.updateById = async (model, _id, obj) => {
 	const conn = await connect();
 	return await model.findOneAndUpdate({ _id }, obj);
+};
+
+module.exports.aggregate = async (model, stages) => {
+	const conn = await connect();
+	return await model.aggregate(stages).unwind().exec();
 };

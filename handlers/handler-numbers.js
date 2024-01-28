@@ -1,15 +1,16 @@
 // The faker-js module creates fake, random data
 const { faker } = require('@faker-js/faker');
-const store = require('../data/store');
+const database = require('../data/database');
+const mongoose = require('mongoose');
 
 // The guessNumber() function will be called by the route-numbers.js route
-module.exports.guess = (min, max) => {
+module.exports.guess = async (min, max) => {
 	const guess = faker.number.int({ min, max });
-	return ({ guess });
-}
 
-module.exports.vote = correct => {
-	store.numbers.votes++;
-	if (correct) store.numbers.correct++;
-	return ({ votes: store.numbers.votes, correct: store.numbers.correct });
+	// Save predictions in database
+	const numberObject = await database.create(database.models.Number, {
+		min, max, guess, scored: false, correct: false, dateGenerated: Date.now()
+	});
+
+	return ({ id: numberObject.id, guess });
 }

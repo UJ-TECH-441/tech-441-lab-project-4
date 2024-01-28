@@ -41,7 +41,7 @@ const starClick = number => {
 		if (!data) throw new Error('Unexpected response');
 		// Result will be a JSON object
 		$('#votes').text(data.votes);
-		$('#ratingAvg').text(data.ratingAvg.toFixed(2));
+		$('#ratingAvg').text((data.stars / data.votes).toFixed(2));
 		$('#rating-message').show();
 	})
 	.catch(err => {

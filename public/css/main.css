@@ -43,15 +43,6 @@ h3 {
 	display: none;
 }
 
-#content {
-	background-color: white;
-	max-width: 900px;
-	margin: auto;
-	padding: 30px 50px;
-	border: solid 1px gray;
-	filter: drop-shadow(15px 15px #ccc);
-}
-
 .color-green {
 	color: #00bb00;
 }
@@ -71,6 +62,29 @@ nav {
 	padding: 1rem;
 }
 
+main {
+	display: flex;
+	justify-content: center;
+}
+
+#content {
+	display: inline-block;
+	background-color: white;
+	min-width: 700px;
+	padding: 30px;
+	border: solid 1px gray;
+	filter: drop-shadow(15px 15px #ccc);
+}
+
+#box > div {
+	margin-bottom: 20px;
+}
+
+#box > img {
+	float: right;
+	height: 100px;
+}
+
 #try-again > div {
 	margin-top: 20px;
 }
@@ -79,15 +93,6 @@ nav {
 	display: none;
 	color: #cc0000;
 	font-weight: 700;
-}
-
-#main > div {
-	margin-bottom: 20px;
-}
-
-#main > img {
-	float: right;
-	height: 100px;
 }
 
 #rating {
@@ -108,8 +113,13 @@ nav {
 	width: 30px;
 }
 
+#score-results {
+	margin-top: 20px;
+}
+
 #results-numbers {
 	font-weight: 700;
+	white-space: nowrap;
 }
 
 #results-numbers-guess {

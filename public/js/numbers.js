@@ -6,18 +6,19 @@ $(document).ready(function() {
 	$('#submit').on('click', () => guess());
 });
 
-let voted = false;
-
 const guess = () => {
-	$('#results-numbers').show();
-	$('#results-numbers-correct').hide();
-	$('#results-numbers-guess').text('');
-	$('.vote').removeClass('fa-solid');
-	$('.vote').addClass('fa-regular');
-
 	// Read min/max values
 	const min = $('#min').val();
 	const max = $('#max').val();
+
+	if (parseInt(min) > parseInt(max)) {
+		return alert('Minimum number cannot be larger than maximum');
+	}
+
+	$('#results-numbers').show();
+	$('#results-numbers-guess').text('');
+	$('#try-again').hide();
+	scoreReset();
 
 	// Send request using GET method with params in query string
 	fetch(`/numbers/guess?min=${min}&max=${max}`, { method: 'GET' })
@@ -33,9 +34,9 @@ const guess = () => {
 				if (wait < 3) {
 					$('#results-numbers-guess').text($('#results-numbers-guess').text() + '. ');
 				} else {
-					voted = false;
 					$('#results-numbers-guess').text(result.guess);
-					$('#results-numbers-correct').show();
+					scoreShow(result.id);
+					$('#try-again').show();
 					clearInterval(interval);
 				}
 				wait++;
@@ -46,31 +47,4 @@ const guess = () => {
 			$('#error').html('Error');
 			$('#error').show();
 		});
-};
-
-const vote = (element, correct) => {
-	if (voted) return; // Only one vote per guess
-	$(element).removeClass('fa-regular');
-	$(element).addClass('fa-solid');
-	fetch(`/numbers/vote`, {
-		method: 'POST',
-		body: JSON.stringify({ correct }),
-		headers: { 'Content-Type': 'application/json' }
-	})
-	.then(res => {
-		if (!res.ok) throw new Error(res.statusText);
-		return res.json();
-	})
-	.then(result => {
-		voted = true;
-		$('#score').html(`The Mindreader's current accuracy rate is 
-			${(100 * (result.correct / result.votes)).toFixed(2)}% 
-			(${result.correct}/${result.votes} votes)`);
-		$('#score').show();
-	})
-	.catch(err => {
-		console.error(err);
-		$('#error').html('Error');
-		$('#error').show();
-	});
 };
