@@ -1,0 +1,119 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+* {
+	font: 400 16px Rubik, sans-serif;
+}
+
+body {
+	background-color: aliceblue;
+	padding: 50px;
+}
+
+a, a:active, a:visited, a:hover {
+  color: #0098ea;
+}
+
+h1, h2, h3 {
+	font-weight: 700;
+}
+
+h1 {
+	font-size: 1.5rem;
+}
+
+h2 {
+	font-size: 1.2rem;
+}
+
+h3 {
+	font-size: 1rem;
+}
+
+.bold {
+	font-weight: 700;
+}
+
+.hide {
+	display: none;
+}
+
+#content {
+	background-color: white;
+	max-width: 900px;
+	margin: auto;
+	padding: 30px 50px;
+	border: solid 1px gray;
+	filter: drop-shadow(15px 15px #ccc);
+}
+
+.color-green {
+	color: #00bb00;
+}
+
+.color-red {
+	color: #cc0000;
+}
+
+.hand {
+	cursor: pointer;
+}
+
+nav {
+	background-color: #efefef;
+	text-align: center;
+	margin-top: 2rem;
+	padding: 1rem;
+}
+
+#try-again > div {
+	margin-top: 20px;
+}
+
+#error {
+	display: none;
+	color: #cc0000;
+	font-weight: 700;
+}
+
+#main > div {
+	margin-bottom: 20px;
+}
+
+#main > img {
+	float: right;
+	height: 100px;
+}
+
+#rating {
+	border-top: solid 1px #ccc;
+	padding-top: 10px;
+	cursor: pointer;
+}
+
+#rating > div {
+	margin: 1rem 0;
+}
+
+#rating-message {
+	display: none;
+}
+
+.star {
+	width: 30px;
+}
+
+#results-numbers {
+	font-weight: 700;
+}
+
+#results-numbers-guess {
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+

@@ -1,0 +1,17 @@
+{
+	"name": "tech-441-lab-project-4",
+	"version": "1.0.0",
+	"description": "TECH-441 Lab 4 project",
+	"scripts": {
+		"start": "nodemon app"
+	},
+	"license": "ISC",
+	"dependencies": {
+		"@faker-js/faker": "^8.3.1",
+		"body-parser": "^1.20.2",
+		"express": "~4.16.1"
+	},
+	"devDependencies": {
+		"nodemon": "^3.0.1"
+	}
+}
