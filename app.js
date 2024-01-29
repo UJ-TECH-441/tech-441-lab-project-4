@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Set port number (change if there is a conflicting service running on 3000)
-const port = 3001;
+const port = 3000;
 app.set('port', port);
 
 // Set up Express to handle JSON, URL encoding, POST bodies and static files
